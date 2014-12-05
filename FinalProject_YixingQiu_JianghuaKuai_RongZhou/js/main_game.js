@@ -100,7 +100,7 @@ ETGame.MainGame.prototype = {
 
 		map.setCollisionBetween(1, 100, true, layerC);
 
-		player = this.add.sprite(this.world.width / 2, this.world.height - 52,
+		player = this.add.sprite(this.world.width / 2, 3312,
 				'char');
 
 		this.physics.arcade.enable(player);
@@ -172,8 +172,10 @@ ETGame.MainGame.prototype = {
 		timer_text = this.add.text(225, player.y - 200, "Time\n" + timer + "s",
 				style);
 
-		music.play('', 0, 1, true);
-
+		if(isSoundOn){
+			music.play('', 0, 1, true);
+		}
+		
 		tjump1 = this.add.audio('tjump1');
 		lsound = this.add.audio('lsound');
 		coin_sound = this.add.audio('coin_sound');
@@ -225,7 +227,6 @@ ETGame.MainGame.prototype = {
 			
 			//gameover
 			if(timer == 0){
-				
 				music.stop();
 		    	over_sound1.play();
 		    	over_sound2.play();
@@ -282,13 +283,16 @@ ETGame.MainGame.prototype = {
 
 			this.camera.y = player.y - 256 / 2;
 
+		}else{
+			if (this.input.activePointer.isDown) {
+				overflag = 0;
+				this.state.start('MainMenu');
+			}
 		}
 	},
 
 	render : function() {
 	},
-
-	
 	
 	// hittng coin
 	catchCoin : function(player, coin){
@@ -332,69 +336,102 @@ ETGame.MainGame.prototype = {
 	hitSwitch : function(player, light) {
 
 		if (player.body.touching.up) {
+			
+			/*
+			switch(light.switchNumber){
+				case 1:
+					
+					break;
+				case 2: 
+					killLayer(layerD);
+					break;
+				case 3:
+					killLayer(layerE);
+					break;
+				case 4:
+					killLayer(layerF);
+					break;
+				case 5:
+					killLayer(layerG);
+					break;
+				case 6:
+					killLayer(layerH);
+					break;
+				case 7:
+					killLayer(layerI);
+					break;
+				case 8:
+					killLayer(layerJ);
+					break;
+				case 9:
+					killLayer(layerK);
+					break;
+				case 10:
+					killLayer(layerL);
+					break;
+				case 11:
+					killLayer(layerM);
+					break;
+				case 12:
+					killLayer(layerN);
+					break;
+			}
+			*/
+			
 			if (light.switchNumber == 1) {
 				killLayer(layerB);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 2) {
 				killLayer(layerD);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 3) {
 				killLayer(layerE);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 4) {
 				killLayer(layerF);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 5) {
 				killLayer(layerG);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 6) {
 				killLayer(layerH);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 7) {
 				killLayer(layerI);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 8) {
 				killLayer(layerJ);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 9) {
 				killLayer(layerK);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 10) {
 				killLayer(layerL);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 11) {
 				killLayer(layerM);
-				lsound.play();
 			}
 
 			else if (light.switchNumber == 12) {
 				killLayer(layerN);
+			}
+			
+			if(isSoundOn){
 				lsound.play();
 			}
 		}
 	},
 
-	
 	// check to see if a sprite is touching anything below it, like the tilemap
 	// or another sprite
 	touchingGround : function(sprite) {

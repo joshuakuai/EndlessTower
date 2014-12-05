@@ -30,18 +30,19 @@ ETGame.MainMenu.prototype = {
   },
 
   create: function () {
-	  
 	// Background and title
 	this.add.sprite(0, 0, 'main_menu_background');
 	this.add.sprite(this.world.centerX-125,this.world.centerY-200, 'game_title');
 	
 	//Buttons
-	startButton = this.add.button(this.world.centerX, this.world.centerY, 'buttons', this.startGame, this, 'start2.png', 'start1.png', 'start2.png');
+	startButton = this.add.button(0, 0, 'buttons', this.startGame, this, 'start2.png', 'start1.png', 'start2.png');
 	soundButton = this.add.button(this.world.centerX, this.world.centerY+130, 'buttons', this.soundButtonTapped, this, 'sound_on2.png', 'sound_on1.png', 'sound_on2.png');
-	
+		
 	//Play the background music
 	normalBackgroundMusic = this.add.audio('normal_background_music',1,true);
-	normalBackgroundMusic.play('',0,1,true);
+	if(isSoundOn){
+		normalBackgroundMusic.play('',0,1,true);
+	}
   },
   
   startGame: function () {

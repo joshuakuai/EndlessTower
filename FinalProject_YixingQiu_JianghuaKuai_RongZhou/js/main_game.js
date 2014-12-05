@@ -102,6 +102,8 @@ ETGame.MainGame.prototype = {
 
 		player = this.add.sprite(this.world.width / 2, 3312,
 				'char');
+				
+		
 
 		this.physics.arcade.enable(player);
 		player.body.gravity.y = 500;
@@ -158,7 +160,7 @@ ETGame.MainGame.prototype = {
 		cursors = this.input.keyboard.createCursorKeys();
 
 		// init timer and score
-		timer = 15;
+		timer = 100;
 		time_count = 0;
 		heights = Math.ceil((this.world.height - player.y - 48) / 10);
 		ex_score = 0;
@@ -171,6 +173,8 @@ ETGame.MainGame.prototype = {
 		score_text = this.add.text(2, player.y - 200, "Score\n" + score, style);
 		timer_text = this.add.text(225, player.y - 200, "Time\n" + timer + "s",
 				style);
+				
+		this.add.text(32 , 3332, "Use UP/LEFT/RIGHT/DOWN to control!\nHit the light switch to light up the path.", style);
 
 		if(isSoundOn){
 			music.play('', 0, 1, true);
@@ -227,9 +231,11 @@ ETGame.MainGame.prototype = {
 			
 			//gameover
 			if(timer == 0){
-				music.stop();
-		    	over_sound1.play();
-		    	over_sound2.play();
+				if(isSoundOn){
+					music.stop();
+		    		over_sound1.play();
+		    		over_sound2.play();
+				}
 		    	gameover = this.add.sprite(60, player.y-50, 'gameover');
 		    	return_text = this.add.text(50,player.y+30, "Click to return to main menu!", style);
 		    	player.destroy();
@@ -277,7 +283,11 @@ ETGame.MainGame.prototype = {
 			// jump
 			if (cursors.up.isDown && this.touchingGround(player)) {
 				player.body.velocity.y = -185;
-				tjump1.play();
+				
+				if(isSoundOn){
+					tjump1.play();
+				}
+				
 				player.animations.play('jump');
 			}
 
@@ -296,7 +306,9 @@ ETGame.MainGame.prototype = {
 	
 	// hittng coin
 	catchCoin : function(player, coin){
-		coin_sound.play();
+		if(isSoundOn){
+			coin_sound.play();
+		}
 		coin.kill();
 		ex_score += 5;
 		flowers.x = coin.x;
@@ -306,11 +318,11 @@ ETGame.MainGame.prototype = {
 	},
 
 	catchClock : function(player, clock){
-
-		clock_sound.play();
+		if(isSoundOn){
+			clock_sound.play();
+		}
 		clock.kill();
 		timer += 20;
-		
 	},
 
 	loadSwitches : function() {

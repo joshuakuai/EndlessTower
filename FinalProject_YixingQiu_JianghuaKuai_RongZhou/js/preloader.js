@@ -26,10 +26,9 @@ ETGame.Preloader.prototype = {
     this.load.setPreloadSprite(this.preloadBar);
 	
 	// Load the main menu background and button assests
-	this.load.image('main_menu_background', 'imgs/mainmenu.jpg');
-	this.load.image('game_title', 'imgs/game_title.png');
+	this.load.image('main_menu_background', 'imgs/main_menu_background.png');
 	this.load.atlas('buttons', 'imgs/buttons.png', 'imgs/buttons.json');
-	this.load.audio('normal_background_music', ['sounds/normal_background.mp3', 'sounds/normal_background.ogg']);
+	this.load.audio('normal_background_music', 'sounds/menu.mp3');
 
     //  Here we load the rest of the assets our game needs...
 	//  loads the tilemap

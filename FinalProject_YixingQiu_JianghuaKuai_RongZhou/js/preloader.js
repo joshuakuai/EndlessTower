@@ -38,11 +38,18 @@ ETGame.Preloader.prototype = {
     this.load.spritesheet('char', 'imgs/char.png', 16, 16);
     this.load.spritesheet('light', 'imgs/lSwitch.png', 16, 16);
     this.load.image('tower_tileset', 'imgs/tower_tileset.png');
-    this.load.image('coin', 'imgs/tTime.png');
-    this.load.image('clock', 'imgs/sScore.png')
+    this.load.image('coin', 'imgs/sScore.png');
+    this.load.image('clock', 'imgs/tTime.png');
+    this.load.image('gameover', 'imgs/gameover.png');
+    this.load.image('flower', 'imgs/flower.png');
+    
     this.load.audio('tower1', 'sounds/game.mp3');
     this.load.audio('tjump1', 'sounds/jump.mp3');
     this.load.audio('lsound', 'sounds/light.mp3');
+    this.load.audio('coin_sound', 'sounds/coin.mp3');
+    this.load.audio('clock_sound', 'sounds/clock.mp3');
+    this.load.audio('gameover1', 'sounds/over1.mp3');
+    this.load.audio('gameover2', 'sounds/over2.mp3');
   },
 
   create: function () {

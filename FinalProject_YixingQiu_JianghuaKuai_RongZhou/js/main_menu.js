@@ -46,11 +46,11 @@ ETGame.MainMenu.prototype = {
   
   startGame: function () {
 	  // start the game
+	  normalBackgroundMusic.stop();
 	  this.state.start('MainGame');
   },
   
   actionOnClick: function() {
-	  normalBackgroundMusic.stop();
 	  this.startGame();
   },
   

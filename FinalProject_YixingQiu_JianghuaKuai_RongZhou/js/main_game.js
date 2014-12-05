@@ -22,7 +22,6 @@ ETGame.MainGame.prototype = {
   },
 
   create: function () {
-    
     this.physics.startSystem(Phaser.Physics.ARCADE);
 
     map = this.add.tilemap('t1');
@@ -89,10 +88,10 @@ ETGame.MainGame.prototype = {
     lights.enableBody = true;
 
     this.loadSwitches();
-
+	
     map.setCollisionBetween(1, 100, true, layerC);
 
-    player = this.add.sprite(this.world.width/2, this.world.height -40, 'char');
+    player = this.add.sprite(this.world.width/2, this.world.height-52, 'char');
     
     this.physics.arcade.enable(player);
     player.body.gravity.y = 500;
@@ -174,7 +173,7 @@ ETGame.MainGame.prototype = {
         player.animations.play('jump');
     }
 
-    this.camera.y = player.y - this.height/2;
+    this.camera.y = player.y - 256/2;
   },
   
   render: function() {},
@@ -206,47 +205,47 @@ ETGame.MainGame.prototype = {
 	  
      if(player.body.touching.up){
         if(light.switchNumber == 1){
-          killLayer(layerB);
+          this.killLayer(layerB);
           lsound.play();
-          }
+        }
 
         else if(light.switchNumber == 2){
-          killLayer(layerD);
+          this.killLayer(layerD);
           lsound.play();
         }
 
         else if(light.switchNumber == 3){
-          killLayer(layerE);
+          this.killLayer(layerE);
           lsound.play();
         }
 
         else if(light.switchNumber == 4){
-          killLayer(layerF);
+          this.killLayer(layerF);
           lsound.play();
         }
 
         else if(light.switchNumber == 5){
-          killLayer(layerG);
+          this.killLayer(layerG);
           lsound.play();
         }
 
         else if(light.switchNumber == 6){
-          killLayer(layerH);
+          this.killLayer(layerH);
           lsound.play();
         }
 
         else if(light.switchNumber == 7){
-          killLayer(layerI);
+          this.killLayer(layerI);
           lsound.play();
         }
         
         else if(light.switchNumber == 8){
-            killLayer(layerJ);
+            this.killLayer(layerJ);
             lsound.play();
           }
         
         else if(light.switchNumber == 9){
-            killLayer(layerK);
+            this.killLayer(layerK);
             lsound.play();
           }
         
